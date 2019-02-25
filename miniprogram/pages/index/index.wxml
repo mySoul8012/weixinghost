@@ -1,0 +1,22 @@
+<!--miniprogram/pages/index/index.wxml-->
+<!--首页图-->
+<i-panel class="panel">
+    <view class="panel-child">
+      <image  class="images-title" src="http://www.iming.info/content/images/2019/01/765435e67ed7b23b1a3ab68727fa1742f4f84b5fdec0f-PhBEbp_fw658-1.gif"></image>
+    </view>
+    <i-panel title="ming" class="panel-title">
+      <view style="padding: 15px;">Thoughts, stories and ideas.</view>
+    </i-panel>
+</i-panel>
+
+<i-panel title="标题">
+    <view style="padding: 15px;">PANEL 内容区域</view>
+</i-panel>
+
+
+<!-- 导航栏 -->
+<i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
+    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="Home"></i-tab-bar-item>
+    <i-tab-bar-item key="interactive" icon="interactive" current-icon="interactive_fill" title="interactive"></i-tab-bar-item>
+    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="My"></i-tab-bar-item>
+</i-tab-bar>
