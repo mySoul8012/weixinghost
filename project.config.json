@@ -5,7 +5,7 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"nodeModules": true,
 		"autoAudits": true,
@@ -34,9 +34,18 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,4 +1,7 @@
 // miniprogram/pages/index/index.js
+const { $Message } = require('../../dist/base/index');
+
+
 Page({
   /**
    * 页面的初始数据
@@ -6,6 +9,34 @@ Page({
   data: {
     // 导航
     current: 'homepage',
+    // 滑块设置
+    visible2: false,
+    //小程序没有refs，所以只能用动态布尔值控制关闭
+    toggle: false,
+    toggle2: false,
+    actions2: [
+      {
+        name: '删除',
+        color: '#ed3f14'
+      }
+    ],
+    actions: [
+      {
+        name: '喜欢',
+        color: '#fff',
+        fontsize: '20',
+        width: 100,
+        icon: 'like',
+        background: '#ed3f14'
+      },
+      {
+        name: '返回',
+        width: 100,
+        color: '#80848f',
+        fontsize: '20',
+        icon: 'undo'
+      }
+    ],
     // 页面数据
     blogData1: {
       title: "工作调度 工作管理 linux 特殊的文件",
@@ -38,6 +69,42 @@ Page({
       id: "5c6c1b80709c3e0001b09556"
     }
   },
+  // 滑块
+  handleCancel2() {
+    this.setData({
+      visible2: false,
+      toggle: this.data.toggle ? false : true
+    });
+    console.log(this.data.toggle, 111111111)
+  },
+  handleClickItem2() {
+    const action = [...this.data.actions2];
+    action[0].loading = true;
+
+    this.setData({
+      actions2: action
+    });
+
+    setTimeout(() => {
+      action[0].loading = false;
+      this.setData({
+        visible2: false,
+        actions2: action,
+        toggle: this.data.toggle ? false : true
+      });
+
+    }, 2000);
+  },
+  handlerCloseButton() {
+    this.setData({
+      toggle2: this.data.toggle2 ? false : true
+    });
+  },
+  actionsTap() {
+    this.setData({
+      visible2: true
+    });
+  },
   // 导航栏数据更改
   handleChange({ detail }) {
     this.setData({
@@ -48,35 +115,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /*
-      // 发送请求
-      wx.request({
-        url: "http://www.iming.info/ghost/api/v2/content/posts/",
-        data: {
-          key: '58fa474ea1d5841bcb00f666a0',
-          limit: '5',
-          page: 1
-        },
-        method: "GET",
-        dataType: "json",
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          console.log(res.data)
-        }
-      })
-    */
+    // 调用函数获取数据
     wx.cloud.callFunction({
-      // 需调用的云函数名
-      name: 'getBlogContent',
+      // 云函数名称
+      name: 'getContentBlog',
       // 传给云函数的参数
       data: {
-        page: 3
+        "page": 1,
       },
-      // 成功回调
-      complete: console.log
     })
+      .then(res => {
+        console.log(res.result);
+      })
+      .catch(console.error)
   },  
 
   /**
