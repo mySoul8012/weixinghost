@@ -19,3 +19,6 @@
   opacity: 0.8;
   text-align: center;
 }
+.bottom {
+  height: 40px;
+}

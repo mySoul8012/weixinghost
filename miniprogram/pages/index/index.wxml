@@ -10,38 +10,27 @@
 </i-panel>
 
 <!-- 页面内容 -->
-<view class="i-swipeout-demo">
-    <view class="i-swipeout-demo-des">
-    </view>
-    <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}">
-        <view slot="content">
-            <i-cell 
-                i-class="i-cell-padding" 
-                title="猛虫过江" 
-                label="侏罗纪世界主题公园及豪华度假村被失控的恐龙们摧毁已有四年">
-            </i-cell>
-        </view>
-    </i-swipeout>
-    <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}" toggle="{{toggle2}}" unclosable="{{true}}">
-        <view slot="content">
-            <i-cell 
-                i-class="i-cell-padding" 
-                title="点击按钮不可关闭" 
-                label="侏罗纪世界主题公园及豪华度假村被失控的恐龙们摧毁已有四年">
-            </i-cell>
-        </view>
-    </i-swipeout>
-    <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}" toggle="{{toggle2}}" unclosable="{{true}}" bindchange="handlerCloseButton">
-        <view slot="content">
-            <i-cell 
-                i-class="i-cell-padding" 
-                title="可点击按钮关闭" 
-                label="侏罗纪世界主题公园及豪华度假村被失控的恐龙们摧毁已有四年">
-            </i-cell>
-        </view>
-    </i-swipeout>
+<view wx:for="{{blogDataList.posts}}">
+ {{index}}: {{item.title}}
 </view>
-
+<view class="i-swipeout-demo">
+    <view wx:for="{{blogDataList.posts}}">
+      <i-swipeout  i-class="i-swipeout-demo-item" actions="{{blogDataListActions[0]}}" toggle="{{toggle2}}" unclosable="{{true}}" bindchange="handlerCloseButton" id="0">
+        <view slot="content">
+            <i-cell 
+                i-class="i-cell-padding" 
+                id="blogData1Content"
+                bindtap="sliderEvent"
+                title="{{blogDataList.posts[0].title}}"
+                label="{{blogDataList.posts[0].excerpt}}">
+            </i-cell>
+        </view>
+      </i-swipeout>
+    </view>
+   
+</view>
+<!-- 顶部白块 -->
+<view class="bottom"></view>
 <!-- 导航栏 -->
 <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="Home"></i-tab-bar-item>
