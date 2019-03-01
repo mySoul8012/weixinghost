@@ -7,6 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 加载css
+    loading: true,
+    // 页数
+    page: 1,
+    // 加载中
+    spinShow: true,
+    switch: false,
     // 导航
     current: 'homepage',
     // 滑块设置
@@ -32,125 +39,13 @@ Page({
         fontsize: '20',
         icon: 'undo'
       }
-    ],
-    /*
-    // 页面数据
-    blogData1: {
-      title: "工作调度 工作管理 linux 特殊的文件",
-      excerpt: "例行工作网络文件分析，查询，登录日志分析，等都属于工作调度",
-      image: "https://images.unsplash.com/photo-1550460238-e622bad1421a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
-      id: "5c6c1b80709c3e0001b09556",
-      actions: [
-        {
-          name: '喜欢',
-          color: '#fff',
-          fontsize: '20',
-          width: 100,
-          icon: 'like',
-          background: '#2d8cf0'
-        },
-        {
-          name: '返回',
-          width: 100,
-          color: '#80848f',
-          fontsize: '20',
-          icon: 'undo'
-        }
-      ]
-    },
-    blogData2: {
-     title: "工作调度 工作管理 linux 特殊的文件",
-      excerpt: "例行工作网络文件分析，查询，登录日志分析，等都属于工作调度",
-      image: "https://images.unsplash.com/photo-1550460238-e622bad1421a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
-      id: "5c6c1b80709c3e0001b09556",
-      actions: [
-        {
-          name: '喜欢',
-          color: '#fff',
-          fontsize: '20',
-          width: 100,
-          icon: 'like',
-          background: '#2d8cf0'
-        },
-        {
-          name: '返回',
-          width: 100,
-          color: '#80848f',
-          fontsize: '20',
-          icon: 'undo'
-        }
-      ]
-    },
-    blogData3: {
-      title: "工作调度 工作管理 linux 特殊的文件",
-      excerpt: "例行工作网络文件分析，查询，登录日志分析，等都属于工作调度",
-      image: "https://images.unsplash.com/photo-1550460238-e622bad1421a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
-      id: "5c6c1b80709c3e0001b09556",
-      actions: [
-        {
-          name: '喜欢',
-          color: '#fff',
-          fontsize: '20',
-          width: 100,
-          icon: 'like',
-          background: '#2d8cf0'
-        },
-        {
-          name: '返回',
-          width: 100,
-          color: '#80848f',
-          fontsize: '20',
-          icon: 'undo'
-        }
-      ]
-    },
-    blogData4: {
-      title: "工作调度 工作管理 linux 特殊的文件",
-      excerpt: "例行工作网络文件分析，查询，登录日志分析，等都属于工作调度",
-      image: "https://images.unsplash.com/photo-1550460238-e622bad1421a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
-      id: "5c6c1b80709c3e0001b09556",
-      actions: [
-        {
-          name: '喜欢',
-          color: '#fff',
-          fontsize: '20',
-          width: 100,
-          icon: 'like',
-          background: '#2d8cf0'
-        },
-        {
-          name: '返回',
-          width: 100,
-          color: '#80848f',
-          fontsize: '20',
-          icon: 'undo'
-        }
-      ]
-    },
-    blogData5: {
-      title: "工作调度 工作管理 linux 特殊的文件",
-      excerpt: "例行工作网络文件分析，查询，登录日志分析，等都属于工作调度",
-      image: "https://images.unsplash.com/photo-1550460238-e622bad1421a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
-      id: "5c6c1b80709c3e0001b09556",
-      actions: [
-        {
-          name: '喜欢',
-          color: '#fff',
-          fontsize: '20',
-          width: 100,
-          icon: 'like',
-          background: '#2d8cf0'
-        },
-        {
-          name: '返回',
-          width: 100,
-          color: '#80848f',
-          fontsize: '20',
-          icon: 'undo'
-        }
-      ]
-    }
-    */
+    ]
+  },
+  // 加载中
+  onSwitchChange() {
+    this.setData({
+      spinShow: false
+    });
   },
   // 滑块
   handleCancel2() {
@@ -181,7 +76,20 @@ Page({
   },
   // 单击滑块按钮,喜欢和返回按钮
   handlerCloseButton(event) {
-    //console.log(event);
+    console.log(event);
+    if (!event.detail.index){
+      // 获取到id
+      const id = event.currentTarget.id;
+      // 获取路径
+      const actionName = "blogDataList.posts[" + id + "].actions[0].name";
+      const actionColor = "blogDataList.posts[" + id + "].actions[0].color"
+      // 更改
+      this.setData({
+        [actionName]: this.data.blogDataList.posts[id].actions[0].name === "喜欢" ? "已喜欢" : "喜欢",
+        [actionColor]: this.data.blogDataList.posts[id].actions[0].color === "#fff" ? "#efbdae" : "#fff"
+      })
+    }
+    /*
     // 获取单击id
     const targetId = event.target.id;
     // 获取需要修改的data
@@ -191,6 +99,7 @@ Page({
       [actionName]: this.data.blogDataListActions[targetId][0].name === "喜欢" ? "已喜欢": "喜欢",
       [actionColor]: this.data.blogDataListActions[targetId][0].color === "#fff" ? "#efbdae" : "#fff"
     })
+    */
    // console.log(this.data);
     /*
     // 获取到id
@@ -227,6 +136,12 @@ Page({
   // 单击滑块事件
   sliderEvent(event){
     console.log(event);
+    // 获取到id
+    const id = this.data.blogDataList.posts[event.target.id].id;
+    // 新页面入栈
+    wx.navigateTo({
+      url: '/pages/content/content?id=' + id
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -246,14 +161,26 @@ Page({
         this.setData({
           blogDataList: res.result
         })
+        // 动态添加属性
+        for(let i = 0; i < 5; i++){
+          let actionsPath = "blogDataList.posts[" + i + "].actions";
+          this.setData({
+            [actionsPath] : this.data.actions
+          })
+        }
+        console.log(this.data);
+        /*
         let blogDataListActions = [];
         for(let i = 0; i < 5; i++){
           blogDataListActions[i] = this.data.actions;
+          //this.data.blogDataList.posts[i].actions = [];
         }
         this.setData({
-          ["blogDataListActions"]: blogDataListActions
+          ["blogDataListActions"]: blogDataListActions,
+          "blogDataList.posts[1].actions": blogDataListActions
         })
-        console.log(this.data.blogDataListActions)
+        
+        console.log(this.data.blogDataList)
         for(let i = 1; i < 6; i++){
           let title = "blogData" + i + ".title";
           let excerpt = "blogData" + i  + ".excerpt";
@@ -262,9 +189,11 @@ Page({
             [excerpt]: res.result.posts[i - 1].excerpt,
           })
         }
+        */
       })
       .catch(console.error);
       console.log(this.data);
+    //this.onSwitchChange()
   },  
 
   
@@ -272,12 +201,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    setTimeout(() => {
+      this.onSwitchChange()
+    }, 1500)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
   },
 
   /**
@@ -305,7 +238,44 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    wx.cloud.callFunction({
+      name: 'getContentBlog',
+      data: {
+        page: this.data.page + 1,
+      }
+    }).then(res => {
+      console.log(res.result.posts);
+      // 动态添加属性
+      for(let i = 0; i < 5; i++){
+        res.result.posts[i].actions =  this.data.actions;
+      }
+      // 当前page
+      let page = this.data.page + 1;
+      this.setData({
+        page: page,
+      })
+      // 获取当前data
+      let blogDataListPosts = [];
+      blogDataListPosts = this.data.blogDataList.posts;
+      console.log(blogDataListPosts)
+      // 数组相加
+      console.log(res.result.posts);
+      blogDataListPosts = blogDataListPosts.concat(res.result.posts);
+      console.log(blogDataListPosts);
+      this.setData({
+        "blogDataList.posts": blogDataListPosts,
+        "blogDataList.meta": res.result.meta
+      })
+      console.log(this.data);
+      // 判断是否到页底
+      if (this.data.page == this.data.blogDataList.meta.pagination.pages){
+        this.setData({
+          loading: !this.data.loading
+        })
+        console.log(23333333);
+        console.log(this.data);
+      }
+    })
   },
 
   /**

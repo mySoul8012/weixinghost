@@ -1,0 +1,9 @@
+<i-panel title="标题">
+    <view style="padding: 15px;">PANEL 内容区域</view>
+</i-panel>
+
+<i-row>
+    <i-col span="8" i-class="col-class">col-8</i-col>
+    <i-col span="8" i-class="col-class">col-8</i-col>
+    <i-col span="8" i-class="col-class">col-8</i-col>
+</i-row>

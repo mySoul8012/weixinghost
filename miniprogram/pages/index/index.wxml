@@ -10,25 +10,25 @@
 </i-panel>
 
 <!-- 页面内容 -->
-<view wx:for="{{blogDataList.posts}}">
- {{index}}: {{item.title}}
+<view>
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
+  <view class="i-swipeout-demo">
+      <view wx:for="{{blogDataList.posts}}" wx:key="id" wx:for-item="blogDataList">
+          <i-swipeout  i-class="i-swipeout-demo-item" actions="{{blogDataList.actions}}" toggle="{{toggle2}}" unclosable="{{true}}" bindchange="handlerCloseButton" id="{{index}}">
+            <view slot="content">
+                <i-cell 
+                    i-class="i-cell-padding" 
+                    id="{{index}}"
+                    bindtap="sliderEvent"
+                    title="{{blogDataList.title}}"
+                    label="{{blogDataList.excerpt}}">
+                </i-cell>
+            </view>
+          </i-swipeout>
+      </view>
+  </view>
 </view>
-<view class="i-swipeout-demo">
-    <view wx:for="{{blogDataList.posts}}">
-      <i-swipeout  i-class="i-swipeout-demo-item" actions="{{blogDataListActions[0]}}" toggle="{{toggle2}}" unclosable="{{true}}" bindchange="handlerCloseButton" id="0">
-        <view slot="content">
-            <i-cell 
-                i-class="i-cell-padding" 
-                id="blogData1Content"
-                bindtap="sliderEvent"
-                title="{{blogDataList.posts[0].title}}"
-                label="{{blogDataList.posts[0].excerpt}}">
-            </i-cell>
-        </view>
-      </i-swipeout>
-    </view>
-   
-</view>
+<i-load-more tip="我是有底线的" loading="{{ loading }}" />
 <!-- 顶部白块 -->
 <view class="bottom"></view>
 <!-- 导航栏 -->

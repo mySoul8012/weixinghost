@@ -6,6 +6,8 @@
     "i-panel": "../../dist/panel/index",
     "i-cell-group": "../../dist/cell-group/index",
     "i-cell": "../../dist/cell/index",
-    "i-swipeout": "../../dist/swipeout/index"
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-spin": "../../dist/spin/index",
+    "i-load-more": "../../dist/load-more/index"
   }
 }
