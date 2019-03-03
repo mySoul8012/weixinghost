@@ -129,6 +129,16 @@ Page({
   },
   // 导航栏数据更改
   handleChange({ detail }) {
+    if (detail.key === "interactive") {
+      wx.navigateTo({
+        url: '/pages/interactive/interactive'
+      })
+    }
+    if (detail.key === "mine") {
+      wx.navigateTo({
+        url: '/pages/user/user'
+      })
+    }
     this.setData({
       current: detail.key
     });

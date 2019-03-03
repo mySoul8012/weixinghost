@@ -1,38 +1,54 @@
 // miniprogram/pages/content/content.js
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: "",
-    html: "",
-    feature_image: "",
-    created_at: ""
+    posts: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
+    let result = wx.cloud.callFunction({
       name: 'getContentText',
       data: {
         id: options.id
       }
     }).then( res => {
-      console.log(res);
+      console.log(res.result)
+      // 更新数据
       this.setData({
-        title: res.result.posts[0].title,
-        html: res.result.posts[0].html,
-        feature_image: res.result.posts[0].feature_image,
-        created_at: res.result.posts[0].created_at
+        posts: res.result.posts
       })
-     } 
-    )
-    console.log(options)
+      console.log(this.data.posts[0])
+      //this.showHTML();
+    })
   },
-
+/*
+// HTML显示函数
+showHTML(){
+  let that = this;
+  let html = this.data.posts[0].html;
+  console.log(html)
+  wxParser.parse({
+    bind: 'richText',
+    html: html,
+    target: that,
+    enablePreviewImage: false, // 禁用图片预览功能
+    tapLink: (url) => { // 点击超链接时的回调函数
+      // url 就是 HTML 富文本中 a 标签的 href 属性值
+      // 这里可以自定义点击事件逻辑，比如页面跳转
+      wx.navigateTo({
+        url
+      });
+    }
+  });
+},
+*/
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

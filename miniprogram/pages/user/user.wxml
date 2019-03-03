@@ -1,0 +1,32 @@
+<!--miniprogram/pages/user/user.wxml-->
+<view class="title">
+  <i-row>
+      <i-col span="8" i-class="col-class">
+        <open-data type="userAvatarUrl"></open-data>
+      </i-col>
+        <open-data type="userNickName"></open-data>  </i-row>
+</view>
+
+<i-cell-group class="list">
+    <i-cell title="暂无" is-link></i-cell>
+    <i-cell title="暂无" is-link url="/pages/dashboard/index"></i-cell>
+    <i-cell title="暂无" is-link url="/pages/dashboard/index" only-tap-footer></i-cell>
+    <i-cell title="暂无">
+        <switch slot="footer" checked />
+    </i-cell>
+</i-cell-group>
+
+<i-modal title="登录吗" visible="{{ visible5 }}" actions="{{ actions5 }}" bind:click="handleClick5">
+    <view>确认是否需要登录吗？</view>
+</i-modal>
+
+
+<!-- 顶部白块 -->
+<view class="bottom"></view>
+
+<!-- 导航栏 -->
+<i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
+    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="Home"></i-tab-bar-item>
+    <i-tab-bar-item key="interactive" icon="interactive" current-icon="interactive_fill" title="interactive"></i-tab-bar-item>
+    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="My"></i-tab-bar-item>
+</i-tab-bar>

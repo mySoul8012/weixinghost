@@ -2,6 +2,9 @@
   "usingComponents": {
     "i-panel": "../../dist/panel/index",
     "i-row": "../../dist/row/index",
-    "i-col": "../../dist/col/index"
+    "i-col": "../../dist/col/index",
+    "i-button": "../../dist/button/index",
+    "htmltowxml": "plugin://htmltowxml/view",
+    "i-load-more": "../../dist/load-more/index"
   }
 }

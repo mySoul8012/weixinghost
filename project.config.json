@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -51,7 +51,27 @@
 					"id": 2,
 					"name": "db guide",
 					"pathName": "pages/content/content",
-					"query": "id=5c6c1b80709c3e0001b09556",
+					"query": "id=5c60830f709c3e0001b0952d",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "interactive",
+					"pathName": "pages/interactive/interactive",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "message",
+					"pathName": "pages/message/message",
 					"scene": null
 				}
 			]

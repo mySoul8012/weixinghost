@@ -1,0 +1,22 @@
+/* miniprogram/pages/user/user.wxss */
+.bottom {
+  height: 50px;
+}
+.card{
+  margin: 20px
+}
+.title{
+  margin-top: 40%;
+  margin-left: 10%;
+  margin-right: 10%
+}
+.avatar > view{
+  width: 80px;
+  height: 80px
+}
+.title-text > view{
+  margin-top: 9%
+}
+.list{
+  margin:30%
+}

@@ -1,0 +1,4 @@
+/* miniprogram/pages/interactive/interactive.wxss */
+.bottom {
+  height: 50px;
+}

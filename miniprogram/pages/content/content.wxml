@@ -1,9 +1,16 @@
-<i-panel title="标题">
-    <view style="padding: 15px;">PANEL 内容区域</view>
+<!-- 页首图 -->
+<i-panel class="panel">
+    <view class="panel-child">
+      <image  class="images-title" src="{{posts[0].feature_image}}"></image>
+    </view>
+    <view class="panel-title">
+      <text style="padding: 12%;">{{posts[0].title}}</text>
+    </view>
 </i-panel>
 
-<i-row>
-    <i-col span="8" i-class="col-class">col-8</i-col>
-    <i-col span="8" i-class="col-class">col-8</i-col>
-    <i-col span="8" i-class="col-class">col-8</i-col>
-</i-row>
+<!-- 页面模块 -->
+<view class="contentBlog">
+  <htmltowxml text="{{posts[0].html}}" bindWxmlTagATap="wxmlTagATap" ></htmltowxml>
+</view>
+
+<i-load-more tip="我是有底线的" loading="{{ false }}" />

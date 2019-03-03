@@ -1,5 +1,6 @@
 <!--miniprogram/pages/index/index.wxml-->
 <!--首页图-->
+<view>
 <i-panel class="panel">
     <view class="panel-child">
       <image  class="images-title" src="http://www.iming.info/content/images/2019/01/765435e67ed7b23b1a3ab68727fa1742f4f84b5fdec0f-PhBEbp_fw658-1.gif"></image>
@@ -31,6 +32,7 @@
 <i-load-more tip="我是有底线的" loading="{{ loading }}" />
 <!-- 顶部白块 -->
 <view class="bottom"></view>
+</view>
 <!-- 导航栏 -->
 <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="Home"></i-tab-bar-item>
